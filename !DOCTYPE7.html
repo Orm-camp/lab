@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>빙글빙글 카드 돌리기</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Quicksand', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -18,15 +20,25 @@
         .header {
             margin-bottom: 10px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .header h1 {
             font-size: 28px;
             font-weight: bold;
             margin: 0;
             color: #333;
+            display: inline-block;
+        }
+        .header img {
+            margin-left: 10px;
+            width: 80px;
+            height: 80px;
+            display: inline-block;
         }
         .header h2 {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: normal;
             margin: 5px 0 20px 0;
             color: #555;
@@ -34,7 +46,7 @@
         .container {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 1cm 1.5cm; /* Adjusted gaps to ensure no overlap even at 100% zoom */
+            gap: 1cm 1.5cm;
             justify-content: center;
             align-content: center;
             width: 90%;
@@ -82,8 +94,9 @@
 <body>
     <div class="header">
         <h1>질문카드를 뽑아보세요!</h1>
-        <h2>서로의 취향과 성향을 파악해서 함께 즐겁게 이야기해보아요!</h2>
+        <img src="https://blogfiles.pstatic.net/MjAyMDEwMjVfMzcg/MDAxNjAzNjE4OTczMjM3.DqeDBBNXFeg-4nY-k0e960zKlSAQp_rb9CFopHXn4HQg.Gps4VcpUFvQjBs-Aoaomv5DXSMqY9AJOQpFQHRImfy0g.JPEG.maro06/EaihY8PUEAEUngg.jpeg.jpg?type=w2" alt="Cute icon">
     </div>
+    <h2>서로의 취향과 성향을 파악해서 함께 즐겁게 이야기해보아요!</h2>
     <div class="container">
         <!-- Cards will be dynamically generated here -->
     </div>

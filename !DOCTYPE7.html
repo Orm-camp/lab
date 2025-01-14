@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Flip Page</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            color: #333;
+        }
+        .header h2 {
+            font-size: 16px;
+            font-weight: normal;
+            margin: 5px 0 20px 0;
+            color: #555;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1cm 1.5cm; /* Adjusted gaps to ensure no overlap even at 100% zoom */
+            justify-content: center;
+            align-content: center;
+            width: 90%;
+        }
+        .card {
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 180px;
+            height: 240px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #00b377;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .card-front {
+            background-color: #00b377;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>질문카드를 뽑아보세요!</h1>
+        <h2>서로의 취향과 성향을 파악해서 함께 즐겁게 이야기해보아요!</h2>
+    </div>
+    <div class="container">
+        <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <script>
+        const questions = [
+            "어떤 상황에서 가장 편안함을 느끼시나요?",
+            "스트레스를 받았을 때 주로 어떤 방법으로 푸시나요?",
+            "갈등이 생겼을 때 어떻게 해결하려고 하시나요?",
+            "대화할 때 함께 지켰으면 하는 바람이 있다면 무엇인가요?",
+            "지금까지 가장 도전적이었던 경험은 무엇인가요?",
+            "중요한 결정을 내릴 때, 주로 어떤 기준이나 가치를 가장 우선시하시나요?",
+            "매일 또는 주기적으로 실천하는 자기 관리 방법이 있나요?",
+            "당신의 에너지를 가장 잘 충전하는 방법은 무엇인가요?",
+            "기쁨이나 슬픔같은 강한 감정을 어떻게 표현하시나요?",
+            "감정을 인식하고 받아들이는데 어려움을 겪을 때, 어떤 방법을 사용하시나요?"
+        ];
+
+        const container = document.querySelector('.container');
+
+        questions.forEach((question, index) => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const cardInner = document.createElement('div');
+            cardInner.classList.add('card-inner');
+
+            const cardFront = document.createElement('div');
+            cardFront.classList.add('card-front');
+            cardFront.textContent = "질문카드 " + (index + 1);
+
+            const cardBack = document.createElement('div');
+            cardBack.classList.add('card-back');
+            cardBack.textContent = question;
+
+            cardInner.appendChild(cardFront);
+            cardInner.appendChild(cardBack);
+            card.appendChild(cardInner);
+            container.appendChild(card);
+
+            card.addEventListener('click', () => {
+                cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' 
+                    ? '' 
+                    : 'rotateY(180deg)';
+            });
+        });
+    </script>
+</body>
+</html>

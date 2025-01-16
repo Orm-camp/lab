@@ -62,9 +62,6 @@
             transition: transform 0.6s;
             cursor: pointer;
         }
-        .card:hover .card-inner {
-            transform: rotateY(180deg);
-        }
         .card-front, .card-back {
             position: absolute;
             width: 100%;
@@ -137,10 +134,19 @@
             card.appendChild(cardInner);
             container.appendChild(card);
 
+            let isFlipped = false;
+
             card.addEventListener('click', () => {
-                cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' 
-                    ? '' 
-                    : 'rotateY(180deg)';
+                if (isFlipped) {
+                    cardInner.style.transform = 'rotateY(0deg)';
+                    cardInner.classList.remove('locked');
+                } else {
+                    if (!cardInner.classList.contains('locked')) {
+                        cardInner.style.transform = 'rotateY(180deg)';
+                        cardInner.classList.add('locked');
+                    }
+                }
+                isFlipped = !isFlipped;
             });
         });
     </script>

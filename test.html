@@ -139,8 +139,12 @@
             card.addEventListener('click', () => {
                 if (isFlipped) {
                     cardInner.style.transform = 'rotateY(0deg)';
+                    cardInner.classList.remove('locked');
                 } else {
-                    cardInner.style.transform = 'rotateY(180deg)';
+                    if (!cardInner.classList.contains('locked')) {
+                        cardInner.style.transform = 'rotateY(180deg)';
+                        cardInner.classList.add('locked');
+                    }
                 }
                 isFlipped = !isFlipped;
             });
@@ -148,4 +152,3 @@
     </script>
 </body>
 </html>
-
